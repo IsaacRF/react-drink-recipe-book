@@ -1,0 +1,16 @@
+@import '../../styles/_includes.scss';
+
+$darkenPrimaryColor: darken($primaryColor, 6%);
+
+input[type=submit] {
+    color: #fff;
+    background-color: $primaryColor;
+    border-color: $darkenPrimaryColor;
+    width: 100%;
+
+    &:hover {
+        color: #fff;
+        background-color: $darkenPrimaryColor;
+        border-color: $darkenPrimaryColor;
+    }
+}
