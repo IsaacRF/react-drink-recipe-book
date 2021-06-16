@@ -1,4 +1,4 @@
-# 🍸 React Drink Cookbook
+# 🍸 React Drink Recipebook
 
 A drink recipes search engine made in React and bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Consumes [The Cocktail DB API]([https://www.thecocktaildb.com](https://www.thecocktaildb.com/api.php)).
 
