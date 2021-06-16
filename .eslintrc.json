@@ -36,6 +36,12 @@
         "semi": [
             "error",
             "always"
+        ],
+        "@typescript-eslint/no-empty-interface": [
+            "warn",
+            {
+                "allowSingleExtends": false
+            }
         ]
     }
 }
