@@ -1,3 +1,6 @@
+@charset 'utf-8';
+
+// --- General styles --- //
 html {
     height: 100%;
 }
@@ -7,11 +10,6 @@ body {
     font-family: 'Lato', sans-serif;
     background-color: #e5e5e5;
     min-height: 100%;
-}
-header {
-    background-color: #ec3a49;
-    color: white;
-    padding: 5rem 0;
 }
 h1 {
     color: white;

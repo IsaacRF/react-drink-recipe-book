@@ -1,0 +1,8 @@
+@import '../../styles/_includes.scss';
+
+header {
+    background-color: $primaryColor;
+    background-image: linear-gradient(160deg, $primaryColor 0%, $secondaryColor 100%);
+    color: white;
+    padding: 5rem 0;
+}
