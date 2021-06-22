@@ -42,6 +42,9 @@
             {
                 "allowSingleExtends": false
             }
-        ]
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "react/prop-types": [2, { "ignore": ["children"] }]
     }
 }

@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
+import CategoriesProvider from './context/CategoriesContext';
 
 function App() {
     return (
-        <>
+        <CategoriesProvider>
             <Header />
 
             <div className="container mt-5">
@@ -12,7 +13,7 @@ function App() {
                     <SearchBar />
                 </div>
             </div>
-        </>
+        </CategoriesProvider>
     );
 }
 

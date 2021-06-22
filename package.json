@@ -2,7 +2,7 @@
   "name": "react-drink-recipe-book",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://isaacrf.com/apps/the-drink-cookbook/",
+  "homepage": "http://isaacrf.com/apps/the-drink-recipebook/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
