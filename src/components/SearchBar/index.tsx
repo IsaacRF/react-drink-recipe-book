@@ -6,6 +6,7 @@ export interface SearchBarProps {}
 
 const SearchBar: React.FC<SearchBarProps> = () => {
     const { categories } = useContext(CategoriesContext);
+    console.log(categories);
 
     return (
         <form className="col-12">

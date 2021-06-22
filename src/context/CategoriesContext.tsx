@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 export interface CategoriesProviderProps {
 
@@ -16,6 +16,13 @@ export const CategoriesContext = createContext<CategoriesContextState>({
 
 const CategoriesProvider: React.FC<CategoriesProviderProps> = ({children}) => {
     const [categories, setCategories] = useState<string[]>([]);
+
+    useEffect(() => {
+        fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+            .then((response) => response.json())
+            .then((categories) => setCategories(categories.drinks))
+            .catch((error) => console.error(error));
+    }, []);
 
     return (
         <CategoriesContext.Provider
