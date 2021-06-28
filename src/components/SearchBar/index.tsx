@@ -1,12 +1,23 @@
-import React, { useContext } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import { CategoriesContext } from '../../context/CategoriesContext';
 import './styles.scss';
+import { Search } from './types';
 
 export interface SearchBarProps {}
 
 const SearchBar: React.FC<SearchBarProps> = () => {
     const { categories } = useContext(CategoriesContext);
-    console.log(categories);
+    const [search, setSearch] = useState<Search>({
+        name: '',
+        category: ''
+    });
+
+    function onSearchChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+        setSearch({
+            ...search,
+            [e.target.name]: e.target.value
+        });
+    }
 
     return (
         <form className="col-12">
@@ -17,16 +28,18 @@ const SearchBar: React.FC<SearchBarProps> = () => {
             <div className="row mt-4">
                 <div className="col-md-4">
                     <input
-                        name="search"
+                        name="name"
                         className="form-control"
                         type="text"
-                        placeholder="Buscar por ingrediente" />
+                        placeholder="Buscar por ingrediente"
+                        onChange={onSearchChange} />
                 </div>
 
                 <div className="col-md-4">
                     <select
                         name="category"
-                        className="form-control">
+                        className="form-control"
+                        onChange={onSearchChange}>
 
                         <option value="">-- Seleccionar categoría --</option>
                         {categories.map(category => (
