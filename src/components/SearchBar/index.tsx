@@ -29,6 +29,14 @@ const SearchBar: React.FC<SearchBarProps> = () => {
                         className="form-control">
 
                         <option value="">-- Seleccionar categoría --</option>
+                        {categories.map(category => (
+                            <option
+                                key={category.strCategory}
+                                value={category.strCategory}>
+
+                                {category.strCategory}
+                            </option>
+                        ))}
                     </select>
                 </div>
 
