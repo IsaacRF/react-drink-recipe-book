@@ -2,17 +2,20 @@ import React from 'react';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import CategoriesProvider from './context/CategoriesContext';
+import RecipesProvider from './context/RecipesContext';
 
 function App() {
     return (
         <CategoriesProvider>
-            <Header />
+            <RecipesProvider>
+                <Header />
 
-            <div className="container mt-5">
-                <div className="row">
-                    <SearchBar />
+                <div className="container mt-5">
+                    <div className="row">
+                        <SearchBar />
+                    </div>
                 </div>
-            </div>
+            </RecipesProvider>
         </CategoriesProvider>
     );
 }

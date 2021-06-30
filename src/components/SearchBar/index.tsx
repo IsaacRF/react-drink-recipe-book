@@ -1,16 +1,18 @@
 import React, { ChangeEvent, useContext, useState } from 'react';
 import { CategoriesContext } from '../../context/CategoriesContext';
 import './styles.scss';
-import { Search } from './types';
+import { Search } from '../../types/Search';
+import { RecipesContext } from '../../context/RecipesContext';
 
 export interface SearchBarProps {}
 
+/**
+ * Search drinks component with multiple search fields
+ * @returns <form>
+ */
 const SearchBar: React.FC<SearchBarProps> = () => {
     const { categories } = useContext(CategoriesContext);
-    const [search, setSearch] = useState<Search>({
-        name: '',
-        category: ''
-    });
+    const { search, setSearch } = useContext(RecipesContext);
 
     function onSearchChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         setSearch({
@@ -28,7 +30,7 @@ const SearchBar: React.FC<SearchBarProps> = () => {
             <div className="row mt-4">
                 <div className="col-md-4">
                     <input
-                        name="name"
+                        name="ingredient"
                         className="form-control"
                         type="text"
                         placeholder="Buscar por ingrediente"
