@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
+import useDebounce from '../hooks/useDebounce';
 import { Recipe } from '../types/Recipe';
 import { Search } from '../types/Search';
 
@@ -31,6 +32,16 @@ function getSearchUrl(search: Search) {
     return (urlBase + '?' + params.join('&'));
 }
 
+async function getDrinks(url: string): Promise<Recipe[]> {
+    return fetch(url)
+        .then((response) => response.json())
+        .then((recipes) => recipes.drinks)
+        .catch((error) => {
+            console.error(error);
+            return [];
+        });
+}
+
 const RecipesProvider: React.FC<RecipesProviderProps> = ({children}) => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [search, setSearch] = useState<Search>({
@@ -38,26 +49,23 @@ const RecipesProvider: React.FC<RecipesProviderProps> = ({children}) => {
         category: ''
     });
     const [isLoading, setIsLoading] = useState(false);
+    const debouncedSearch = useDebounce(search, 500);
 
     useEffect(() => {
         if (search.category || search.ingredient) {
             const getRecipes = async () => {
                 setIsLoading(true);
-
-                fetch(getSearchUrl(search))
-                    .then((response) => response.json())
-                    .then((recipes) => {
-                        setRecipes(recipes.drinks);
-                        setIsLoading(false);
-                    })
-                    .catch((error) => console.error(error));
+                getDrinks(getSearchUrl(search)).then(drinks => {
+                    setRecipes(drinks);
+                    setIsLoading(false);
+                });
             };
             getRecipes();
         }
         else {
             setRecipes([]);
         }
-    }, [search]);
+    }, [debouncedSearch]);
 
     return (
         <RecipesContext.Provider

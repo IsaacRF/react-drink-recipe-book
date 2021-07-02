@@ -1,7 +1,6 @@
-import React, { ChangeEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, useContext } from 'react';
 import { CategoriesContext } from '../../context/CategoriesContext';
 import './styles.scss';
-import { Search } from '../../types/Search';
 import { RecipesContext } from '../../context/RecipesContext';
 
 export interface SearchBarProps {}
@@ -28,7 +27,7 @@ const SearchBar: React.FC<SearchBarProps> = () => {
             </fieldset>
 
             <div className="row mt-4">
-                <div className="col-md-4">
+                <div className="col-md-5">
                     <input
                         name="ingredient"
                         className="form-control"
@@ -37,7 +36,7 @@ const SearchBar: React.FC<SearchBarProps> = () => {
                         onChange={onSearchChange} />
                 </div>
 
-                <div className="col-md-4">
+                <div className="col-md-5">
                     <select
                         name="category"
                         className="form-control"
@@ -53,13 +52,6 @@ const SearchBar: React.FC<SearchBarProps> = () => {
                             </option>
                         ))}
                     </select>
-                </div>
-
-                <div className="col-md-4">
-                    <input
-                        type="submit"
-                        className="btn btn-block"
-                        value="Buscar bebidas" />
                 </div>
             </div>
         </form>
