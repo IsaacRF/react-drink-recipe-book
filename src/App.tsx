@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './components/Header';
+import RecipesList from './components/RecipesList';
 import SearchBar from './components/SearchBar';
 import CategoriesProvider from './context/CategoriesContext';
 import RecipesProvider from './context/RecipesContext';
@@ -14,6 +15,8 @@ function App() {
                     <div className="row">
                         <SearchBar />
                     </div>
+
+                    <RecipesList></RecipesList>
                 </div>
             </RecipesProvider>
         </CategoriesProvider>

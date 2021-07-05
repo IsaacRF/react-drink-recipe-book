@@ -11,6 +11,7 @@ export interface RecipesProviderProps {
 interface RecipesContextState {
     search: Search;
     setSearch: (search: Search) => void;
+    recipes: Recipe[];
     isLoading: boolean;
 }
 
@@ -20,6 +21,7 @@ export const RecipesContext = createContext<RecipesContextState>({
         category: ''
     },
     setSearch: () => {},
+    recipes: [],
     isLoading: false
 });
 
@@ -72,6 +74,7 @@ const RecipesProvider: React.FC<RecipesProviderProps> = ({children}) => {
             value ={{
                 search,
                 setSearch,
+                recipes,
                 isLoading
             }}
         >
