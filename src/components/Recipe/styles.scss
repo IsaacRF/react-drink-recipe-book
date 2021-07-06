@@ -7,10 +7,67 @@
     border-color: $primaryColor;
 }
 
-img{
+.card-container {
     transition: transform .2s;
+    cursor: pointer;
+    perspective: 1000px;
 
     &:hover{
         transform: scale(1.05);
     }
+
+    &.selected {
+        transform: translate(-50%,-50%);
+        position: fixed;
+        z-index: 2;
+        left: 50%;
+        top: 50%;
+    }
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.card-container.selected .card {
+    transform: rotateY(180deg);
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Position the front and back side */
+.card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.card-front {
+
+}
+
+.card-back {
+    position: absolute;
+    background-color: $primaryColor;
+    color: rgb(97, 89, 89);
+    transform: rotateY(180deg);
+}
+
+.card-background {
+    display: inline;
+}
+
+.card-background.active {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5000;
 }
