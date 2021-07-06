@@ -1,0 +1,16 @@
+@import '../../styles/_includes.scss';
+
+.btn {
+    width: 100%;
+    color: #fff;
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+}
+
+img{
+    transition: transform .2s;
+
+    &:hover{
+        transform: scale(1.05);
+    }
+}
