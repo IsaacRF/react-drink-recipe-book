@@ -2,26 +2,26 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
 import useDebounce from '../hooks/useDebounce';
-import { Recipe } from '../types/Recipe';
+import { Drink } from '../types/Drink';
 import { Search } from '../types/Search';
 
-export interface RecipesProviderProps {
+export interface DrinksProviderProps {
 }
 
-interface RecipesContextState {
+interface DrinksContextState {
     search: Search;
     setSearch: (search: Search) => void;
-    recipes: Recipe[];
+    drinks: Drink[];
     isLoading: boolean;
 }
 
-export const RecipesContext = createContext<RecipesContextState>({
+export const DrinksContext = createContext<DrinksContextState>({
     search: {
         ingredient: '',
         category: ''
     },
     setSearch: () => {},
-    recipes: [],
+    drinks: [],
     isLoading: false
 });
 
@@ -34,18 +34,18 @@ function getSearchUrl(search: Search) {
     return (urlBase + '?' + params.join('&'));
 }
 
-async function getDrinks(url: string): Promise<Recipe[]> {
+async function fetchDrinks(url: string): Promise<Drink[]> {
     return fetch(url)
         .then((response) => response.json())
-        .then((recipes) => recipes.drinks)
+        .then((drinks) => drinks.drinks)
         .catch((error) => {
             console.error(error);
             return [];
         });
 }
 
-const RecipesProvider: React.FC<RecipesProviderProps> = ({children}) => {
-    const [recipes, setRecipes] = useState<Recipe[]>([]);
+const DrinksProvider: React.FC<DrinksProviderProps> = ({children}) => {
+    const [drinks, setDrinks] = useState<Drink[]>([]);
     const [search, setSearch] = useState<Search>({
         ingredient: '',
         category: ''
@@ -55,32 +55,29 @@ const RecipesProvider: React.FC<RecipesProviderProps> = ({children}) => {
 
     useEffect(() => {
         if (search.category || search.ingredient) {
-            const getRecipes = async () => {
-                setIsLoading(true);
-                getDrinks(getSearchUrl(search)).then(drinks => {
-                    setRecipes(drinks);
-                    setIsLoading(false);
-                });
-            };
-            getRecipes();
+            setIsLoading(true);
+            fetchDrinks(getSearchUrl(search)).then(drinks => {
+                setDrinks(drinks);
+                setIsLoading(false);
+            });
         }
         else {
-            setRecipes([]);
+            setDrinks([]);
         }
     }, [debouncedSearch]);
 
     return (
-        <RecipesContext.Provider
+        <DrinksContext.Provider
             value ={{
                 search,
                 setSearch,
-                recipes,
+                drinks: drinks,
                 isLoading
             }}
         >
             {children}
-        </RecipesContext.Provider>
+        </DrinksContext.Provider>
     );
 };
 
-export default RecipesProvider;
+export default DrinksProvider;

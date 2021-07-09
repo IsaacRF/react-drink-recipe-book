@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useContext } from 'react';
 import { CategoriesContext } from '../../context/CategoriesContext';
 import './styles.scss';
-import { RecipesContext } from '../../context/RecipesContext';
+import { DrinksContext } from '../../context/DrinksContext';
 
 export interface SearchBarProps {}
 
@@ -11,7 +11,7 @@ export interface SearchBarProps {}
  */
 const SearchBar: React.FC<SearchBarProps> = () => {
     const { categories } = useContext(CategoriesContext);
-    const { search, setSearch } = useContext(RecipesContext);
+    const { search, setSearch } = useContext(DrinksContext);
 
     function onSearchChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         setSearch({

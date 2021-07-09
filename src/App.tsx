@@ -1,14 +1,14 @@
 import React from 'react';
 import Header from './components/Header';
-import RecipesList from './components/RecipesList';
+import DrinksList from './components/DrinksList';
 import SearchBar from './components/SearchBar';
 import CategoriesProvider from './context/CategoriesContext';
-import RecipesProvider from './context/RecipesContext';
+import DrinksProvider from './context/DrinksContext';
 
 function App() {
     return (
         <CategoriesProvider>
-            <RecipesProvider>
+            <DrinksProvider>
                 <Header />
 
                 <div className="container mt-5">
@@ -16,9 +16,9 @@ function App() {
                         <SearchBar />
                     </div>
 
-                    <RecipesList></RecipesList>
+                    <DrinksList></DrinksList>
                 </div>
-            </RecipesProvider>
+            </DrinksProvider>
         </CategoriesProvider>
     );
 }
