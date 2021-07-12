@@ -13,6 +13,7 @@ $nextLevelOpacity: 0.8;
 $primaryColor: #0093e9;
 $secondaryColor: #c080d0;
 $cardColor: #F2F2F2;
+$cardBackColor: lighten($secondaryColor, 15%);
 $backgroundColor: rgba($primaryColor, 0.85);
 // Others
 $shadow: 0px 0px 8px 0px rgba(#000, 0.5);

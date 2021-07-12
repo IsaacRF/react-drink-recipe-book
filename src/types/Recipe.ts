@@ -6,6 +6,8 @@ export interface Recipe {
     strDrinkThumb: string;
     strGlass: string;
     strInstructions: string;
-    ingredients: string[];
-    measures: string[]
+    ingredients: {
+        name: string;
+        measure: string;
+    }[];
 }

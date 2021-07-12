@@ -32,41 +32,21 @@ const DrinkCard: React.FC<DrinkCompProps> = ({drink}) => {
                     strDrinkThumb: drinks.drinks[0].strDrinkThumb,
                     strGlass: drinks.drinks[0].strGlass,
                     strInstructions: drinks.drinks[0].strInstructions,
-                    ingredients: [
-                        drinks.drinks[0].strIngredient1,
-                        drinks.drinks[0].strIngredient2,
-                        drinks.drinks[0].strIngredient3,
-                        drinks.drinks[0].strIngredient4,
-                        drinks.drinks[0].strIngredient5,
-                        drinks.drinks[0].strIngredient6,
-                        drinks.drinks[0].strIngredient7,
-                        drinks.drinks[0].strIngredient8,
-                        drinks.drinks[0].strIngredient9,
-                        drinks.drinks[0].strIngredient10,
-                        drinks.drinks[0].strIngredient11,
-                        drinks.drinks[0].strIngredient12,
-                        drinks.drinks[0].strIngredient13,
-                        drinks.drinks[0].strIngredient14,
-                        drinks.drinks[0].strIngredient15,
-                    ],
-                    measures: [
-                        drinks.drinks[0].strMeasure1,
-                        drinks.drinks[0].strMeasure2,
-                        drinks.drinks[0].strMeasure3,
-                        drinks.drinks[0].strMeasure4,
-                        drinks.drinks[0].strMeasure5,
-                        drinks.drinks[0].strMeasure6,
-                        drinks.drinks[0].strMeasure7,
-                        drinks.drinks[0].strMeasure8,
-                        drinks.drinks[0].strMeasure9,
-                        drinks.drinks[0].strMeasure10,
-                        drinks.drinks[0].strMeasure11,
-                        drinks.drinks[0].strMeasure12,
-                        drinks.drinks[0].strMeasure13,
-                        drinks.drinks[0].strMeasure14,
-                        drinks.drinks[0].strMeasure15,
-                    ]
+                    ingredients: []
                 };
+
+                for (let i = 1; i <= 15; i++) {
+                    const ingredient: string = drinks.drinks[0][`strIngredient${i}`];
+                    const measure: string = drinks.drinks[0][`strMeasure${i}`];
+
+                    if (ingredient != null) {
+                        recipe.ingredients.push({
+                            name: ingredient,
+                            measure: measure
+                        });
+                    }
+                }
+
                 return recipe;
             })
             .catch((error) => {
@@ -102,8 +82,19 @@ const DrinkCard: React.FC<DrinkCompProps> = ({drink}) => {
                         ) : (
                             <>
                                 <h1>{recipe?.strDrink}</h1>
-                                <p>{recipe?.strCategory}</p>
-                                <p>{recipe?.isAlcoholic ? '💧' : '🚫'}</p>
+                                <h2>
+                                    {recipe?.strCategory}
+                                    {recipe?.isAlcoholic ? '💧' : '🚫'}
+                                </h2>
+                                <h3>Ingredients</h3>
+                                <ul>
+                                    { recipe?.ingredients.map((ingredient) => (
+                                        <li key={ingredient.name}>{ingredient.name} - {ingredient.measure}</li>
+                                    ))}
+                                </ul>
+                                <h3>Recipe</h3>
+                                <p>{recipe?.strInstructions}</p>
+                                <img className="card-img-top" src={recipe?.strDrinkThumb} alt={`${recipe?.strDrink} image`} />
                             </>
                         )}
                     </div>
