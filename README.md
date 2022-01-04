@@ -2,7 +2,9 @@
 
 A drink recipes search engine made in React and bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Consumes [The Cocktail DB API](https://www.thecocktaildb.com/api.php).
 
-Live: WIP
+Live demo: http://isaacrf.com/apps/the-drink-recipebook/
+
+![drinkrecipebook-demo](https://user-images.githubusercontent.com/2803925/148060067-3db77816-2c74-42b6-9f1d-c7da4deb3173.gif)
 
 ## Available Commands
 
