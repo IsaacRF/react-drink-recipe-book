@@ -22,9 +22,14 @@
         z-index: 2;
         left: 50%;
         top: 50%;
+        height: 90%;
 
         .card-back {
             overflow-y: scroll;
+        }
+
+        @media only screen and (max-width: 768px) {
+            width: 90%;
         }
     }
 }
@@ -55,7 +60,7 @@
 }
 
 .card-front {
-
+    background: $cardFrontColor;
 }
 
 .card-back {
